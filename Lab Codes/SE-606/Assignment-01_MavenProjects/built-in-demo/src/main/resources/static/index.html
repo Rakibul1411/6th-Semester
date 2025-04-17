@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Spring Demo</title>
+</head>
+<body>
+<button onclick="sendRequest()">Click Me</button>
+
+<script>
+    function sendRequest() {
+        fetch("/hello", { method: "POST" })
+            .then(response => response.text())
+            .then(text => alert("Server says: " + text));
+    }
+</script>
+</body>
+</html>
