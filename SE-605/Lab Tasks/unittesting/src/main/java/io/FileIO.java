@@ -21,7 +21,7 @@ public class FileIO {
 	/**
 	 * Reads a file that contains numbers line by line 
 	 * and returns an array of the integers found in the file.
-	 * @param filepath the file that contains the numbersmvn
+	 * @param filepath the file that contains the numberses
 	 * @return an array of numbers
 	 * @exception IllegalArgumentException when the given file does not exist
 	 * @exception IllegalArgumentException when the given file is empty

@@ -16,7 +16,7 @@ public class ArithmeticOperations {
 	 * @param numerator   the numerator of the operation
 	 * @param denominator the denominator of the operation
 	 * @return the result of the division between numerator and denominator
-	 * @exception ArithmeticException when denominator is zero
+	 * @exception ArithmeticException when the denominator is zero
 	 */
 	public double divide(double numerator, double denominator) {
 		if (denominator == 0)
