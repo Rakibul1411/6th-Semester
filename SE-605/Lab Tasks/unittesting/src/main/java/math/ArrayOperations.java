@@ -21,7 +21,7 @@ public class ArrayOperations {
 	 * Gets one integer and returns true if it is prime and false if it is not.
 	 * 
 	 * @param fileio   instance for reading a file
-	 * @param filepath path for file that needs to be checked
+	 * @param filepath path for a file that needs to be checked
 	 * @param myMath   instance for checking whether a number is prime
 	 * @return arrayOfPrimeNumbers the array of prime numbers that where in the file
 	 */
