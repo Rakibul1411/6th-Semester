@@ -25,7 +25,7 @@ class ArrayOperationsTest {
 
     @Test
     void findPrimesInFile() {
-        String filePath = "/Volumes/T7 Shield/IIT Folder/Semesters/6th Semester/SE-605/Lab Tasks/unittesting/src/test/resources/grades_valid.txt";
+        String filePath = "/Users/md.rakibulislam/IIT/6th Semester/SE-605/Lab Tasks/unittesting/src/test/resources/grades_valid.txt";
 
         MyMath safeMyMath = new MyMath() {
             @Override
