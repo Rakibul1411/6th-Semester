@@ -20,7 +20,7 @@ class ArithmeticOperationsTest {
     public void tearDown() {
     }
 
-//    For Division Operator
+    // _____ For Division Operator ______________________________________________________
 
     @Test
     void divide_positive_numbers() {
@@ -73,96 +73,93 @@ class ArithmeticOperationsTest {
     }
 
     @Test
-    void divideDenominatorZeroThrows() {
+    void divideDenominatorZero() {
         assertThrows(
                 ArithmeticException.class,
                 () -> arithmeticOperations.divide(10, 0)
         );
     }
 
-    // ─── ZERO CASES ────────────────────────────────────────────────────────────
+    // ─── For Multiply ────────────────────────────────────────────────────────────
 
     @Test
-    void multiply_zeroXZeroY_returnsZero() {
+    void multiply_zeroXZeroY() {
         assertEquals(0, arithmeticOperations.multiply(0, 0));
     }
 
     @Test
-    void multiply_positiveX_zeroY_returnsZero() {
+    void multiply_positiveX_zeroY() {
         assertEquals(0, arithmeticOperations.multiply(5, 0));
     }
 
     @Test
-    void multiply_zeroX_positiveY_returnsZero() {
+    void multiply_zeroX_positiveY() {
         assertEquals(0, arithmeticOperations.multiply(0, 7));
     }
 
-    // ─── VALID MULTIPLICATIONS ────────────────────────────────────────────────
 
     @Test
-    void multiply_smallNumbers_returnsProduct() {
+    void multiply_smallNumbers() {
         assertEquals(12, arithmeticOperations.multiply(3, 4));
     }
 
     @Test
-    void multiply_oneAndMaxValue_returnsMaxValue() {
+    void multiply_oneAndMaxValue() {
         assertEquals(Integer.MAX_VALUE, arithmeticOperations.multiply(1, Integer.MAX_VALUE));
     }
 
     @Test
-    void multiply_boundarySquareNumbers_returnsCorrectProduct() {
+    void multiply_boundarySquareNumbers() {
         // 46340 * 46340 = 2 147 395 600 < Integer.MAX_VALUE
         assertEquals(2_147_395_600, arithmeticOperations.multiply(46_340, 46_340));
     }
 
-    // ─── NEGATIVE-ARGUMENTS ERRORS ────────────────────────────────────────────
 
     @Test
     void multiply_negativeX_throwsIllegalArgumentException() {
-        IllegalArgumentException ex = assertThrows(
+        IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> arithmeticOperations.multiply(-1,  5)
         );
-        assertEquals("x & y should be >= 0", ex.getMessage());
+        assertEquals("x & y should be >= 0", exception.getMessage());
     }
 
     @Test
     void multiply_negativeY_throwsIllegalArgumentException() {
-        IllegalArgumentException ex = assertThrows(
+        IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> arithmeticOperations.multiply(5, -1)
         );
-        assertEquals("x & y should be >= 0", ex.getMessage());
+        assertEquals("x & y should be >= 0", exception.getMessage());
     }
 
     @Test
     void multiply_bothNegative_throwsIllegalArgumentException() {
-        IllegalArgumentException ex = assertThrows(
+        IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> arithmeticOperations.multiply(-3, -7)
         );
-        assertEquals("x & y should be >= 0", ex.getMessage());
+        assertEquals("x & y should be >= 0", exception.getMessage());
     }
 
-    // ─── OVERFLOW ERRORS ───────────────────────────────────────────────────────
 
     @Test
     void multiply_xTooLargeForY_throwsOverflowException() {
-        // Integer.MAX_VALUE / 2 = 1_073_741_823, so x=2 > that triggers overflow
-        IllegalArgumentException ex = assertThrows(
+
+        IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> arithmeticOperations.multiply(2, Integer.MAX_VALUE)
         );
-        assertEquals("The product does not fit in an Integer variable", ex.getMessage());
+        assertEquals("The product does not fit in an Integer variable", exception.getMessage());
     }
 
     @Test
     void multiply_yTooLargeForX_throwsOverflowException() {
-        // similarly, MAX_VALUE * 2 overflows
-        IllegalArgumentException ex = assertThrows(
+
+        IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> arithmeticOperations.multiply(Integer.MAX_VALUE, 2)
         );
-        assertEquals("The product does not fit in an Integer variable", ex.getMessage());
+        assertEquals("The product does not fit in an Integer variable", exception.getMessage());
     }
 }
