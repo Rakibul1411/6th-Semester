@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="10a2864e-24b4-4916-a58f-c2e00d332020" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-601/Academia Slides-Books/Lecure 01.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-601/Academia Slides-Books/Lecure 02.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-601/Academia Slides-Books/Lecure 03.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-601/Academia Slides-Books/distributed_systems_principles_and_paradigms_2nd_edition.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-601/Academia Slides-Books/distributed_systems_principles_and_paradigms_2nd_edition.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Adverserial Search.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Adverserial Search.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Blind Search.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Blind Search.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/CSP.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/CSP.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Heuristic Search.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Heuristic Search.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Intro to AI.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CSE-604/Academia Slides-Books/Intro to AI.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-605/Academia Slides-Books/Chap_2_Software_Testing_Terminology_and_Methodology.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-605/Academia Slides-Books/Chap_2_Software_Testing_Terminology_and_Methodology.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-605/Academia Slides-Books/Chauhan, Naresh-Software testing _  principles and practices-Oxford University Press (2010).pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-605/Academia Slides-Books/Chauhan, Naresh-Software testing _  principles and practices-Oxford University Press (2010).pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-605/Academia Slides-Books/Lecture 1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-605/Lab Tasks/unittesting/target/lab-01-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-605/Lab Tasks/unittesting/target/lab-01-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Academia Slides-Books/(Robert C. Martin Series) Robert C. Martin - Clean Architecture_ A Craftsman’s Guide to Software Structure and Design-Prentice Hall (2017).pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Academia Slides-Books/(Robert C. Martin Series) Robert C. Martin - Clean Architecture_ A Craftsman’s Guide to Software Structure and Design-Prentice Hall (2017).pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Academia Slides-Books/Alex Xu - System Design Interview_ An Insider’s Guide-Independently published (2020).pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Academia Slides-Books/Alex Xu - System Design Interview_ An Insider’s Guide-Independently published (2020).pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/GQM_Assignment_Group3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#1-Introduction.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#1-Introduction.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#2.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#2.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#3.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture#3.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture5.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture5.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Lecture6.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-611/Academia Slides-Books/Soft metrics book.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-612/Academia Slides-Books/Software-Security-Building-Security-In-by-Gary-McGraw-z-lib.org.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SE-612/Academia Slides-Books/Software-Security-Building-Security-In-by-Gary-McGraw-z-lib.org.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-612/Lab Tasks/W03_Web_XSS_BSSE.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../SE-612/Lab Tasks/Web_XSS_Elgg_new.pdf" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="31K2KXOXZ8CBJUc8Rx942e9ui8W" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="10a2864e-24b4-4916-a58f-c2e00d332020" name="Changes" comment="" />
+      <created>1755258382111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755258382111</updated>
+      <workItem from="1755258387862" duration="4551000" />
+      <workItem from="1755274761719" duration="17000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

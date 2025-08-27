@@ -1,0 +1,38 @@
+{
+  "name": "grpc-user-management",
+  "version": "1.0.0",
+  "description": "gRPC-based user management system with message queue and failure handling",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "gateway": "node gateway.js",
+    "client": "node client.js",
+    "dev": "nodemon server.js",
+    "dev:gateway": "nodemon gateway.js",
+    "proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./proto --grpc_out=grpc_js:./proto --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin ./proto/user.proto"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.0",
+    "@grpc/proto-loader": "^0.7.8",
+    "bull": "^4.11.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "redis": "^4.6.7",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "^1.12.4",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "grpc",
+    "nodejs",
+    "mongodb",
+    "user-management",
+    "message-queue"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,107 @@
+cd Downloads/
+cd buffer-lab/
+
+Task-1:
+1. gcc -z execstack -o call_shellcode call_shellcode.c
+2. ./call_shellcode
+3. exit
+4. gcc -m32 -o stack -z execstack -fno-stack-protector stack.c
+5. sudo chown root stack
+6. sudo chmod 4755 stack
+7. echo "qqqqqqqqqqqqq" > badfile
+8. ./stack
+9. echo "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" > badfile
+10. ./stack
+
+
+Task-2:
+1. sudo sysctl -w kernel.randomize_va_space=0
+2. sudo ln -sf /bin/zsh /bin/sh
+3. gcc -m32 -o prog prog.c
+4. ./prog
+5. gcc -m32 -o prog prog.c
+6. ./prog
+7. gcc -m32 -z execstack -fno-stack-protector -g -o stack_dbg stack.c
+8. touch badfile
+9. gdb stack_dbg
+10. b foo
+11. run
+12. next
+13. p $ebp
+14. p &buffer
+15. p/d 0xbfffe9b8(ebp address) - 0xbfffe94c(buffer address)
+16. quit
+17. chmod u+x exploit.py
+18. rm badfile
+19. exploit.py
+20. ./stack
+21. id  
+22. exit
+23. gcc -o makeitroot makeitroot.c 
+24. ./stack
+25. id
+26. ./makeitroot
+27. id
+28. exit
+
+
+Task-3:
+1. sudo sysctl -w kernel.randomize_va_space=0
+2. sudo ln -sf /bin/dash /bin/sh
+3. touch dash_shell_test.c
+4. gedit dash_shell_test.c
+5. gcc dash_shell_test.c -o dash_shell_test
+6. sudo chown root dash_shell_test
+7. sudo chmod 4755 dash_shell_test
+8. ./dash_shell_test
+9. id
+10. (remove setuid comment of dash_shell_test.c file then) gcc dash_shell_test.c -o removedcommentsetuid
+11. sudo chown root removedcommentsetuid
+12. sudo chmod 4755 removedcommentsetuid
+13. ./removedcommentsetuid
+14. id
+15. whoami
+16. exit
+
+
+Task-4:
+1. sudo /sbin/sysctl -w kernel.randomize_va_space=2
+2. touch defeat_rand.sh
+3. gedit defeat_rand.sh
+4. ./stack
+5. chmod +x defeat_rand.sh
+6. ./defeat_rand.sh
+7. ./makeitroot
+8. whoami
+9. id
+10. exit
+
+
+Task-5:
+1. sudo /sbin/sysctl -w kernel.randomize_va_space=0
+2. gcc -z execstack -o stackWithSG stack.c
+3. sudo chown root stackWithSG
+4. sudo chmod 4755 stackWithSG
+5. ./stackWithSG
+
+
+Task-6:
+1. sudo /sbin/sysctl -w kernel.randomize_va_space=0
+2. gcc -o stackNE -fno-stack-protector -z noexecstack stack.c
+3. sudo chown root stackNE
+4. sudo chmod 4755 stackNE
+5. ./stackNE
+
+
+
+
+
+
+
+
+
+
+
+
+
+

