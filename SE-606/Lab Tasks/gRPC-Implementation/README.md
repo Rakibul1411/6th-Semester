@@ -201,8 +201,9 @@ HTTP_PORT=3000
 REDIS_HOST=localhost
 REDIS_PORT=6379
 
-# MongoDB (already configured in code)
-MONGODB_URI=mongodb+srv://mdrakibul11611:mdrakibul11611@usermanagement.cnqosei.mongodb.net/?retryWrites=true&w=majority&appName=UserManagement
+# MongoDB Configuration
+# Create a .env file with your actual MongoDB Atlas connection string
+# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
 ```
 
 ## Error Handling

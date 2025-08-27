@@ -22,7 +22,8 @@ const logger = winston.createLogger({
 // Database connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect('mongodb+srv://mdrakibul11611:mdrakibul11611@usermanagement.cnqosei.mongodb.net/?retryWrites=true&w=majority&appName=UserManagement', {
+    const mongodbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/grpc_user_management';
+    const conn = await mongoose.connect(mongodbUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       // Performance optimizations

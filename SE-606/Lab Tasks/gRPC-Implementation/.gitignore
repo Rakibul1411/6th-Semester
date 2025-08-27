@@ -76,3 +76,4 @@ proto/*_grpc_pb.js
 # Temporary files
 tmp/
 temp/
+config/
